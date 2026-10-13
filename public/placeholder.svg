@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="420" viewBox="0 0 300 420" fill="none">
+  <rect width="300" height="420" fill="#18181b"/>
+  <path d="M150 190L135 180V200L150 190Z" fill="#71717a"/>
+  <circle cx="150" cy="190" r="30" stroke="#3f3f46" stroke-width="2"/>
+  <text x="150" y="240" fill="#71717a" font-size="14" font-family="sans-serif" text-anchor="middle">Anime Poster</text>
+</svg>

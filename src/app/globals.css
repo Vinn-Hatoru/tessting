@@ -1,0 +1,162 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+/*
+ * Miru design tokens — light theme.
+ * White / off-white surfaces, near-black text, restrained orange accent.
+ */
+:root {
+  --radius: 0.5rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.205 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.205 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.205 0 0);
+  /* primary = Tailwind orange-600 */
+  --primary: oklch(0.646 0.222 41.116);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.968 0.013 48);
+  --accent-foreground: oklch(0.408 0.123 38);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  /* ring = Tailwind orange-500 */
+  --ring: oklch(0.705 0.213 47.604);
+}
+
+/*
+ * Miru design tokens — dark theme.
+ * Soft charcoal/slate surfaces (not pitch black), crisp readable text,
+ * polished restrained orange accent.
+ */
+.dark {
+  --background: oklch(0.20 0.012 255);
+  --foreground: oklch(0.96 0.005 255);
+  --card: oklch(0.24 0.015 255);
+  --card-foreground: oklch(0.96 0.005 255);
+  --popover: oklch(0.24 0.015 255);
+  --popover-foreground: oklch(0.96 0.005 255);
+  /* primary = vibrant orange tuned for dark background */
+  --primary: oklch(0.68 0.215 42);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.28 0.016 255);
+  --secondary-foreground: oklch(0.96 0.005 255);
+  --muted: oklch(0.26 0.014 255);
+  --muted-foreground: oklch(0.68 0.012 255);
+  --accent: oklch(0.28 0.038 42);
+  --accent-foreground: oklch(0.92 0.08 42);
+  --destructive: oklch(0.58 0.22 27);
+  --border: oklch(0.30 0.014 255);
+  --input: oklch(0.30 0.014 255);
+  /* ring = Tailwind orange-500 */
+  --ring: oklch(0.72 0.20 45);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+    box-sizing: border-box;
+  }
+  html {
+    scroll-behavior: smooth;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    max-width: 100%;
+    overflow-x: hidden;
+    position: relative;
+    width: 100%;
+  }
+  ::selection {
+    background-color: oklch(0.968 0.031 48);
+    color: oklch(0.408 0.123 38);
+  }
+  .dark ::selection {
+    background-color: oklch(0.32 0.06 42);
+    color: oklch(0.98 0.02 42);
+  }
+}
+
+@layer utilities {
+  /* Slim, unobtrusive scrollbar for episode lists / scroll areas */
+  .scrollbar-slim {
+    scrollbar-width: thin;
+    scrollbar-color: oklch(0.87 0 0) transparent;
+  }
+  .scrollbar-slim::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  .scrollbar-slim::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .scrollbar-slim::-webkit-scrollbar-thumb {
+    background-color: oklch(0.87 0 0);
+    border-radius: 9999px;
+  }
+  .scrollbar-slim::-webkit-scrollbar-thumb:hover {
+    background-color: oklch(0.75 0 0);
+  }
+
+  .dark .scrollbar-slim {
+    scrollbar-color: oklch(0.36 0.015 255) transparent;
+  }
+  .dark .scrollbar-slim::-webkit-scrollbar-thumb {
+    background-color: oklch(0.36 0.015 255);
+  }
+  .dark .scrollbar-slim::-webkit-scrollbar-thumb:hover {
+    background-color: oklch(0.48 0.015 255);
+  }
+
+  /* Subtle fade used by the hero when switching featured titles */
+  .animate-content-fade {
+    animation: content-fade 220ms ease-out;
+  }
+
+  @keyframes content-fade {
+    from {
+      opacity: 0;
+      transform: translateY(4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
